@@ -1,8 +1,36 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { RiCalendarTodoLine } from 'react-icons/ri'
 import TodoItems from './TodoItems'
 
 const Todo = () => {
+  const [todoItems,setTodoItems] = useState([])
+ const inputRef = useRef()
+ const add = () =>{
+
+ 
+  const text = inputRef.current.value.trim()
+   if(text === ""){
+    return null
+  }
+  const newTodo = {
+    id:Date.now(),
+    text:text,
+    completed:false
+  }
+  console.log(text);
+  
+  setTodoItems((prev) => [...prev,newTodo])
+  inputRef.current.value = ''
+  
+ }
+
+ const deleteTodo =(id) => {
+  setTodoItems((prev) => {
+    return prev.filter((todo )=> todo.id !== id)
+  })
+ }
+
+
   return (
     <div className='bg-white h-[600px] w-[500px] rounded-2xl py-4'>
     <div className='flex gap-4 items-center mx-8 my-4'> 
@@ -11,16 +39,27 @@ const Todo = () => {
     </div>
 
     <div className=' flex justify-between mx-10 mt-10 items-center  rounded-full bg-slate-200'>
-      <input type="text  " 
+      <input 
+      ref={inputRef}
+      type="text" 
        className='p-3 text-md  border-none outline-none '
       placeholder='Add Task' />
-      <button className=' bg-orange-500 px-6 py-3 text-md   rounded-full text-white font-medium'>Add</button>
+      <button
+      onClick={add}
+      className=' bg-orange-500 px-6 py-3 text-md   rounded-full text-white font-medium'>Add</button>
     </div>
     
 
     <div className='mt-10 mx-10 '>
-      <TodoItems text= ' This is a todo item' />
-       <TodoItems text= ' Add task ' />
+      
+     
+       {
+        todoItems.map((item,index)=> (
+          <TodoItems key={index} text={item.text}
+          id={item.id}
+          deleteTodo={deleteTodo} />
+        ))
+      }
     </div>
     
     </div>

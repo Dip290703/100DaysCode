@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { IoMdDoneAll } from "react-icons/io";
+
 import { MdDelete, MdDone, MdDoneAll } from "react-icons/md";
 
-const TodoItems = ({text}) => {
+const TodoItems = ({text,id,deleteTodo}) => {
   const [done, setDone] = useState(false);
   const toggle = () => {
     setDone(!done);
@@ -19,7 +19,9 @@ const TodoItems = ({text}) => {
            {text}
           </p>
         </div>
-        <MdDelete size={25} />
+        <MdDelete
+        onClick={()=>deleteTodo(id)}
+        size={25} />
       </div>
     </>
   );
