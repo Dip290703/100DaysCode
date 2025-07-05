@@ -1,0 +1,34 @@
+const hadleUpdate =() =>{
+    if(editText === "") return
+    editTodo(id,editText.trim())
+   
+
+
+}
+
+const editTodo = (id,newtext) => {
+    setTodoitems((prev) =>{
+        prev.map((todo) => todo.id === id ? {...todo ,text:newtext} :todo)
+    })
+}
+
+
+const add =() => {
+    const text = inputRef.current.value.trim()
+    if(text === ""){
+        return null
+    }
+    const newTodo ={
+        id:Date.now(),
+        text:text,
+        completed:false
+    }
+    setTodoitems((prev) => [...prev,newTodo])
+    inputRef.current.value("")
+}
+
+const deleteTodo =(id)=> {
+ setTodoitems((prev) => {
+    return prev.filter((todo) => todo.id !== id)
+ })
+}
