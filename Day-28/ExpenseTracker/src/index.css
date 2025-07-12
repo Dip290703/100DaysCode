@@ -1,1 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Poppins:wght@300;400;500;600&display=swap");
+
 @import "tailwindcss";
+
+@theme {
+    --color-expense: #7e69ab,
+    --color-expense-light: #9b87f5,
+    --color-expense-dark: #6e59a5 
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
